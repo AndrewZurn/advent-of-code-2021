@@ -1,11 +1,9 @@
 (ns advent-of-code.day1
-  (:require [clojure.java.io :as io]))
+  (:require [advent-of-code.core :as c]))
 
-(def data (io/resource "day1.txt"))
+(def data (c/parse-file "day1.txt"))
 
-(def parsed-numbers
-  (map #(Integer/parseInt %)
-       (.split (slurp data) "\n")))
+(def parsed-data (map #(Integer/parseInt %) data))
 
 (defn answer-it-all [nums]
   (reduce
@@ -21,7 +19,7 @@
 (def grouped-inputs-summed
   (map
     (fn [group] (reduce + group))
-    (partition 3 1 parsed-numbers)))
+    (partition 3 1 parsed-data)))
 
-(println "Part 1 total was:" (:total (answer-it-all parsed-numbers)))
+(println "Part 1 total was:" (:total (answer-it-all parsed-data)))
 (println "Part 2 total was:" (:total (answer-it-all grouped-inputs-summed)))

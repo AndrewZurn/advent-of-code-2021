@@ -1,6 +1,5 @@
-(ns advent-of-code.core)
+(ns advent-of-code.core
+  (:require [clojure.java.io :as io]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn parse-file [filename]
+  (.split (slurp (io/resource filename)) "\n"))
